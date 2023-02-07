@@ -40,9 +40,9 @@ const math = async (prompt) => {
   };
 };
 
-const mail = (text, email) => {
+const mail = async (text, email) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
     port: 465,
     auth: {
       user: process.env.GMAIL_MAIL,
