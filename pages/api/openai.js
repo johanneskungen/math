@@ -40,28 +40,29 @@ const math = async (prompt) => {
   };
 };
 
-const mail = async (text, email) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
+const mail = (addr) => {
+  var transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
     auth: {
-      user: process.env.GMAIL_MAIL,
-      pass: process.env.GMAIL_PASS,
+      user: "8b2247d45c5a15",
+      pass: "76fa462e944068",
     },
-    secure: false,
   });
 
   const mailOptions = {
     from: "Math Helper <johannes.einar.eriksson@gmail.com>",
-    to: email,
+    to: addr,
     subject: "Related links to your search on MathHelper.io",
-    text,
+    text: "Email service is unavailable at the moment...",
   };
 
-  return transporter.sendMail(mailOptions, (erro, info) => {
+  return transport.sendMail(mailOptions, (erro, info) => {
     if (erro) {
       console.log(erro);
       return erro.message.toString();
+    } else {
+      console.log(info);
     }
   });
 };
@@ -72,9 +73,9 @@ export default async function handler(req, res) {
 
   // const infoArr = await webScraper(mathFuncResponse.type);
   //const mailText = infoArr.map((item, index) => {return `Article number ${index + 1} says ${item.title} and this is the link to the site ${item.link}`;})
-   // .join("\n\n");
+  // .join("\n\n");
   // console.log(mailText);
-  mail("Our mail function is currently in progress! Stay tuned!", "johannes.foretag@gmail.com");
+  mail("johannes.foretag@gmail.com");
 
   return res.status(200).json(mathFuncResponse.solution);
 }
