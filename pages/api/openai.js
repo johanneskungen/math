@@ -70,16 +70,10 @@ export default async function handler(req, res) {
   require("dotenv").config();
   const mathFuncResponse = await math(req.body);
 
-  /* 
-  const infoArr = await webScraper(mathFuncResponse.type);
-  const mailText = infoArr
-    .map((item, index) => {
-      return `Article number ${index + 1} says ${
-        item.title
-      } and this is the link to the site ${item.link}`;
-    })
-    .join("\n\n");
-  */
+  // const infoArr = await webScraper(mathFuncResponse.type);
+  //const mailText = infoArr.map((item, index) => {return `Article number ${index + 1} says ${item.title} and this is the link to the site ${item.link}`;})
+   // .join("\n\n");
+  // console.log(mailText);
   mail("HELLO", "johannes.foretag@gmail.com");
 
   return res.status(200).json(mathFuncResponse.solution);
