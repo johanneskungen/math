@@ -48,7 +48,7 @@ const mail = async (text, email) => {
       user: process.env.GMAIL_MAIL,
       pass: process.env.GMAIL_PASS,
     },
-    secure: true,
+    secure: false,
   });
 
   const mailOptions = {
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
   //const mailText = infoArr.map((item, index) => {return `Article number ${index + 1} says ${item.title} and this is the link to the site ${item.link}`;})
    // .join("\n\n");
   // console.log(mailText);
-  mail("HELLO", "johannes.foretag@gmail.com");
+  mail("Our mail function is currently in progress! Stay tuned!", "johannes.foretag@gmail.com");
 
   return res.status(200).json(mathFuncResponse.solution);
 }
